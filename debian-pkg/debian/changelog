@@ -1,3 +1,19 @@
+i3-wm (4.18.2-3) unstable; urgency=medium
+
+  [ Frédéric Pierret (fepitre) ]
+  * Remove useless/missing deps
+  * spec: don't fails with CentOS 7 due to older rpm
+
+  [ Marek Marczykowski-Górecki ]
+  * version 4.18.2-2
+
+  [ Frédéric Pierret (fepitre) ]
+  * Update travis
+  * Disable build for CentOS 7
+  * debian: initial packaging from upstream
+
+ -- Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>  Sun, 20 Sep 2020 00:49:56 +0200
+
 i3-wm (4.18.2-1) unstable; urgency=medium
 
   * New upstream release.
