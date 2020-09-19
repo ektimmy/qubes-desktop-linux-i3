@@ -1,0 +1,2 @@
+# False positive: This is not part of sensible-utils
+i3-wm: missing-depends-on-sensible-utils usr/bin/i3-sensible-pager

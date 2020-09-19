@@ -34,3 +34,7 @@ verify-sources:
 .PHONY: update-sources
 update-sources:
 	@$(BUILDER_DIR)/$(SRC_DIR)/builder-rpm/scripts/generate-hashes-from-sources $(FEDORA_SOURCES)
+
+clean:
+	rm -rf debian/changelog.*
+	rm -rf pkgs
