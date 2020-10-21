@@ -1,3 +1,10 @@
+i3-wm (4.18.2-4) unstable; urgency=medium
+
+  [ Daniel Moerner ]
+  * Add upstream patch to kick tray clients earlier (upstream #4159)
+
+ -- Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>  Wed, 21 Oct 2020 03:28:55 +0200
+
 i3-wm (4.18.2-3) unstable; urgency=medium
 
   [ Frédéric Pierret (fepitre) ]
