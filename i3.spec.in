@@ -9,6 +9,7 @@ Source0:        %{URL}/downloads/%{name}-%{version}.tar.bz2
 Source1:        %{name}-logo.svg
 Patch0:         0001-Show-qubes-domain-in-configurable-colored-borders.patch
 Patch1:         0002-Upstream-kick-tray-clients-before-destroying-bar.patch
+Patch2:         0001-Strip-build-path-directories-with-ffile-prefix-map-f.patch
 
 BuildRequires:  gcc
 BuildRequires:  autoconf
