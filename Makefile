@@ -3,7 +3,7 @@ VERSION := $(file <version)
 REL := $(file <rel)
 
 FEDORA_SOURCES := https://src.fedoraproject.org/rpms/i3/raw/f$(subst fc,,$(DIST))/f/sources
-SRC_FILE := i3-$(VERSION).tar.bz2
+SRC_FILE := i3-$(VERSION).tar.xz
 
 BUILDER_DIR ?= ../..
 SRC_DIR ?= qubes-src
