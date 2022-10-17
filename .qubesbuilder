@@ -15,4 +15,4 @@ vm:
 source:
   files:
   - url: https://i3wm.org/downloads/i3-4.21.tar.xz
-    sha512: i3-4.21.tar.xz.asc.sha512
+    sha512: i3-4.21.tar.xz.sha512
