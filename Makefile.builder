@@ -13,6 +13,6 @@ source-debian-copy-in:
 	mkdir -p "$(CHROOT_DIR)/$(DIST_SRC)/debian/patches"
 	$(ORIG_SRC)/debian-quilt $(ORIG_SRC)/series-debian.conf $(CHROOT_DIR)/$(DIST_SRC)/debian/patches
 	cp -p $(SRC_FILE) $(ORIG_FILE)
-	tar jxvf $(SRC_FILE) -C $(CHROOT_DIR)/$(DIST_SRC)/debian-pkg --strip-components=1
+	tar Jxvf $(SRC_FILE) -C $(CHROOT_DIR)/$(DIST_SRC)/debian-pkg --strip-components=1
 
 # vim: ft=make
