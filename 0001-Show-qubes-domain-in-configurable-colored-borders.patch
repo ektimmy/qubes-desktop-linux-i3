@@ -533,7 +533,7 @@ index 7c65cee..8a85cb2 100644
   * Updates the CLIENT_LEADER (logical parent window).
   *
 diff --git a/src/x.c b/src/x.c
-index 42df996..856af23 100644
+index 42df996..2066b6e 100644
 --- a/src/x.c
 +++ b/src/x.c
 @@ -489,20 +489,31 @@ void x_draw_decoration(Con *con) {
@@ -604,15 +604,24 @@ index 42df996..856af23 100644
                              w->x + w->width, 0, r->width - (w->x + w->width), r->height);
      }
  
-@@ -664,6 +675,7 @@ void x_draw_decoration(Con *con) {
+@@ -621,8 +632,6 @@ void x_draw_decoration(Con *con) {
+     /* 6: draw the icon and title */
+     int text_offset_y = (con->deco_rect.height - config.font.height) / 2;
+ 
+-    struct Window *win = con->window;
+-
+     const int deco_width = (int)con->deco_rect.width;
+     const int title_padding = logical_px(2);
+ 
+@@ -664,6 +673,7 @@ void x_draw_decoration(Con *con) {
      }
  
      i3String *title = NULL;
-+    struct Window *win = con->window;
++
      if (win == NULL) {
          if (con->title_format == NULL) {
              char *_title;
-@@ -683,6 +695,18 @@ void x_draw_decoration(Con *con) {
+@@ -683,6 +693,18 @@ void x_draw_decoration(Con *con) {
          goto copy_pixmaps;
      }
  
@@ -631,7 +640,7 @@ index 42df996..856af23 100644
      /* icon_padding is applied horizontally only, the icon will always use all
       * available vertical space. */
      int icon_size = max(0, con->deco_rect.height - logical_px(2));
-@@ -740,9 +764,7 @@ void x_draw_decoration(Con *con) {
+@@ -740,9 +762,7 @@ void x_draw_decoration(Con *con) {
              icon_size);
      }
  

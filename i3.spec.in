@@ -12,6 +12,9 @@ Patch0:         0001-Show-qubes-domain-in-configurable-colored-borders.patch
 BuildRequires:  gcc
 BuildRequires:  autoconf
 BuildRequires:  automake
+BuildRequires:  meson
+
+
 # from configure.ac and DEPENDS (mostly versions)
 BuildRequires:  pkgconfig >= 0.25
 # no pkg-config for libev
@@ -41,7 +44,7 @@ BuildRequires:  asciidoc >= 8.3.0
 BuildRequires:  xmlto >= 0.0.23
 
 # TODO: Testsuites
-# BuildRequires:  perl(ExtUtils::MakeMaker)
+BuildRequires:  perl(ExtUtils::MakeMaker)
 #BuildRequires:  perl(strict)
 #BuildRequires:  perl(warnings)
 #BuildRequires:  perl(Pod::Usage)
@@ -56,7 +59,7 @@ BuildRequires:  xmlto >= 0.0.23
 #BuildRequires:  perl(IO::Handle)
 #BuildRequires:  perl(AnyEvent::Util)
 #BuildRequires:  perl(AnyEvent::Handle)
-#BuildRequires:  perl(AnyEvent::I3)
+BuildRequires:  perl(AnyEvent::I3)
 #BuildRequires:  perl(X11::XCB::Connection)
 #BuildRequires:  perl(Carp)
 
@@ -122,11 +125,12 @@ find . -maxdepth 1 -type f -name "i3*" -exec sed -i -e '1s;^#!/usr/bin/env perl;
 
 
 %build
-aclocal
+# aclocal
 mkdir build && pushd build
-ln -s ../configure configure
-%configure
-%make_build
+meson .. && ninja -v
+# ln -s ../configure configure
+# %configure
+# %make_build
 popd
 
 doxygen pseudo-doc.doxygen
