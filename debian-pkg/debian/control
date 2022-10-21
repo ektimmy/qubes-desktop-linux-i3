@@ -27,7 +27,8 @@ Build-Depends: debhelper (>= 9),
                libstartup-notification0-dev (>= 0.10),
                libcairo2-dev (>= 1.14.4),
                libpango1.0-dev,
-               libpod-simple-perl
+               libpod-simple-perl,
+               meson
 Standards-Version: 3.9.8
 Homepage: https://i3wm.org/
 Vcs-Git: https://salsa.debian.org/i3-team/i3-wm.git
