@@ -125,13 +125,14 @@ find . -maxdepth 1 -type f -name "i3*" -exec sed -i -e '1s;^#!/usr/bin/env perl;
 
 
 %build
-# aclocal
-mkdir build && pushd build
+
+# See https://mesonbuild.com/Builtin-options.html for Meson built-in options
+meson setup --prefix=/usr build && pushd build
+meson compile
 
 # echo "buildroot: %{buildroot} _bindir: %{_bindir} datadir : %{_datadir} name %{name}"
 #  buildroot: /home/user/rpmbuild/BUILDROOT/i3-4.21-6.fc32.x86_64 _bindir: /usr/bin datadir : /usr/share name i3
 
-meson .. --prefix=%{buildroot} --bindir=%{buildroot}%{_bindir} --datadir=%{buildroot}%{_datadir} && ninja -v
 popd
 
 echo "TODO: generate doxygen"
@@ -140,20 +141,21 @@ echo "TODO: generate doxygen"
 
 %install
 pushd build
-ninja install
+DESTDIR=%{buildroot} meson install
 
 echo "TODO: install man-pages"
-#mkdir -p %{buildroot}%{_mandir}/man1/
+mkdir -p %{buildroot}%{_mandir}/man1/
 #install -Dpm0644 man/*.1 \
 #        %{buildroot}%{_mandir}/man1/
 
 
 echo "TODO: install some pixmaps(?)"
 
-#mkdir -p %{buildroot}%{_datadir}/pixmaps/
+mkdir -p %{buildroot}%{_datadir}/pixmaps/
 #install -Dpm0644 %{SOURCE1} \
 #        %{buildroot}%{_datadir}/pixmaps/
 popd
+
 %check
 %ifnarch s390 s390x
 # TODO: with xorg dummy to test the package.
