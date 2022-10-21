@@ -136,25 +136,25 @@ meson compile
 popd
 
 echo "TODO: generate doxygen"
-# doxygen pseudo-doc.doxygen
-# mv pseudo-doc/html pseudo-doc/doxygen
+doxygen pseudo-doc.doxygen
+mv pseudo-doc/html pseudo-doc/doxygen
 
 %install
 pushd build
 DESTDIR=%{buildroot} meson install
 
-echo "TODO: install man-pages"
+popd
+
+echo "Installing man-pages"
 mkdir -p %{buildroot}%{_mandir}/man1/
+cp man/*.1 %{buildroot}%{_mandir}/man1/
 #install -Dpm0644 man/*.1 \
 #        %{buildroot}%{_mandir}/man1/
 
-
-echo "TODO: install some pixmaps(?)"
-
 mkdir -p %{buildroot}%{_datadir}/pixmaps/
+cp  %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
 #install -Dpm0644 %{SOURCE1} \
 #        %{buildroot}%{_datadir}/pixmaps/
-popd
 
 %check
 %ifnarch s390 s390x
