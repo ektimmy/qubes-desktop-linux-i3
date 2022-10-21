@@ -1,6 +1,7 @@
 i3-wm (4.21-1) unstable; urgency=medium
 
   [ Martin Holst Swende (holiman) ]
+  [ (anadahz) ]
   * New upstream release
 
  -- Martin Holst Swende <martin@swende.se>  Fri, 21 Oct 2022 19:06:00 +0100
