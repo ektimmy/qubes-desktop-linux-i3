@@ -127,26 +127,28 @@ find . -maxdepth 1 -type f -name "i3*" -exec sed -i -e '1s;^#!/usr/bin/env perl;
 %build
 # aclocal
 mkdir build && pushd build
-meson .. && ninja -v
-# ln -s ../configure configure
-# %configure
-# %make_build
+meson .. --prefix=%{buildroot} && ninja -v
 popd
 
-doxygen pseudo-doc.doxygen
-mv pseudo-doc/html pseudo-doc/doxygen
+echo "TODO: generate doxygen"
+# doxygen pseudo-doc.doxygen
+# mv pseudo-doc/html pseudo-doc/doxygen
 
 %install
 pushd build
-%make_install
+ninja install
 
-mkdir -p %{buildroot}%{_mandir}/man1/
-install -Dpm0644 man/*.1 \
-        %{buildroot}%{_mandir}/man1/
+echo "TODO: install man-pages"
+#mkdir -p %{buildroot}%{_mandir}/man1/
+#install -Dpm0644 man/*.1 \
+#        %{buildroot}%{_mandir}/man1/
 
-mkdir -p %{buildroot}%{_datadir}/pixmaps/
-install -Dpm0644 %{SOURCE1} \
-        %{buildroot}%{_datadir}/pixmaps/
+
+echo "TODO: install some pixmaps(?)"
+
+#mkdir -p %{buildroot}%{_datadir}/pixmaps/
+#install -Dpm0644 %{SOURCE1} \
+#        %{buildroot}%{_datadir}/pixmaps/
 
 %check
 %ifnarch s390 s390x
