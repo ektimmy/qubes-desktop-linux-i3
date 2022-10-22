@@ -12,7 +12,7 @@ Patch0:         0001-Show-qubes-domain-in-configurable-colored-borders.patch
 BuildRequires:  gcc
 BuildRequires:  autoconf
 BuildRequires:  automake
-BuildRequires:  meson
+BuildRequires:  meson >= 0.45.0
 
 
 # from configure.ac and DEPENDS (mostly versions)
@@ -34,7 +34,8 @@ BuildRequires:  pkgconfig(xcb-xrm)
 BuildRequires:  pkgconfig(xkbcommon) >= 0.4.0
 BuildRequires:  pkgconfig(xkbcommon-x11) >= 0.4.0
 BuildRequires:  pkgconfig(yajl) >= 2.0.1
-BuildRequires:  pkgconfig(libpcre) >= 8.10
+# For some reson, using pkgconfig(libpcre2-8) fails
+BuildRequires:  pcre2-devel
 BuildRequires:  pkgconfig(cairo) >= 1.14.4
 BuildRequires:  pkgconfig(pangocairo) >= 1.30.0
 BuildRequires:  pkgconfig(glib-2.0)
