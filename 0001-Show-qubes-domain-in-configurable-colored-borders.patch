@@ -2,8 +2,8 @@ diff --git a/include/config_directives.h b/include/config_directives.h
 index e005709..185ea5c 100644
 --- a/include/config_directives.h
 +++ b/include/config_directives.h
-@@ -67,7 +67,7 @@ CFGFUN(ipc_socket, const char *path);
- CFGFUN(ipc_kill_timeout, const long timeout_ms);
+@@ -71,7 +71,7 @@ CFGFUN(ipc_socket, const char *path);
+ CFGFUN(tiling_drag, const char *value);
  CFGFUN(restart_state, const char *path);
  CFGFUN(popup_during_fullscreen, const char *value);
 -CFGFUN(color, const char *colorclass, const char *border, const char *background, const char *text, const char *indicator, const char *child_border);
@@ -15,7 +15,7 @@ diff --git a/include/configuration.h b/include/configuration.h
 index 843e156..985ea16 100644
 --- a/include/configuration.h
 +++ b/include/configuration.h
-@@ -243,7 +243,7 @@ struct Config {
+@@ -244,7 +242,7 @@ struct Config {
          struct Colortriple urgent;
          struct Colortriple placeholder;
          bool got_focused_tab_title;
@@ -284,7 +284,7 @@ index e2dd69b..9d08c61 100644
  
      /* the last argument (indicator color) is ignored for bar colors */
      INIT_COLOR(config.bar.focused, "#4c7899", "#285577", "#ffffff", "#000000");
-@@ -273,6 +357,12 @@ bool load_configuration(const char *override_configpath, config_load_t load_type
+@@ -281,6 +365,12 @@ bool load_configuration(const char *override_configpath, config_load_t load_type
          set_font(&config.font);
      }
  
@@ -296,7 +296,7 @@ index e2dd69b..9d08c61 100644
 +
      /* Make bar config blocks without a configured font use the i3-wide font. */
      Barconfig *current;
-     TAILQ_FOREACH (current, &barconfigs, configs) {
+     if (load_type != C_VALIDATE) {
 diff --git a/src/config_directives.c b/src/config_directives.c
 index a611da2..37c378f 100644
 --- a/src/config_directives.c
@@ -536,7 +536,7 @@ diff --git a/src/x.c b/src/x.c
 index 42df996..2066b6e 100644
 --- a/src/x.c
 +++ b/src/x.c
-@@ -489,20 +489,31 @@ void x_draw_decoration(Con *con) {
+@@ -487,20 +487,31 @@ void x_draw_decoration(Con *con) {
      /* 1: build deco_params and compare with cache */
      struct deco_render_params *p = scalloc(1, sizeof(struct deco_render_params));
  
@@ -574,7 +574,7 @@ index 42df996..2066b6e 100644
      }
  
      p->border_style = con_border_style(con);
-@@ -512,7 +523,7 @@ void x_draw_decoration(Con *con) {
+@@ -510,7 +521,7 @@ void x_draw_decoration(Con *con) {
      p->con_rect = (struct width_height){r->width, r->height};
      p->con_window_rect = (struct width_height){w->width, w->height};
      p->con_deco_rect = con->deco_rect;
@@ -583,7 +583,7 @@ index 42df996..2066b6e 100644
      p->con_is_leaf = con_is_leaf(con);
      p->parent_layout = con->parent->layout;
  
-@@ -547,16 +558,16 @@ void x_draw_decoration(Con *con) {
+@@ -545,16 +556,16 @@ void x_draw_decoration(Con *con) {
          draw_util_clear_surface(&(con->frame_buffer), (color_t){.red = 0.0, .green = 0.0, .blue = 0.0});
  
          /* top area */
@@ -604,7 +604,7 @@ index 42df996..2066b6e 100644
                              w->x + w->width, 0, r->width - (w->x + w->width), r->height);
      }
  
-@@ -621,8 +632,6 @@ void x_draw_decoration(Con *con) {
+@@ -629,8 +640,6 @@ void x_draw_decoration(Con *con) {
      /* 6: draw the icon and title */
      int text_offset_y = (con->deco_rect.height - config.font.height) / 2;
  
@@ -613,7 +613,7 @@ index 42df996..2066b6e 100644
      const int deco_width = (int)con->deco_rect.width;
      const int title_padding = logical_px(2);
  
-@@ -664,6 +673,7 @@ void x_draw_decoration(Con *con) {
+@@ -672,6 +681,7 @@ void x_draw_decoration(Con *con) {
      }
  
      i3String *title = NULL;
@@ -621,7 +621,7 @@ index 42df996..2066b6e 100644
      if (win == NULL) {
          if (con->title_format == NULL) {
              char *_title;
-@@ -683,6 +693,18 @@ void x_draw_decoration(Con *con) {
+@@ -691,6 +701,18 @@ void x_draw_decoration(Con *con) {
          goto copy_pixmaps;
      }
  
@@ -640,7 +640,7 @@ index 42df996..2066b6e 100644
      /* icon_padding is applied horizontally only, the icon will always use all
       * available vertical space. */
      int icon_size = max(0, con->deco_rect.height - logical_px(2));
-@@ -740,9 +762,7 @@ void x_draw_decoration(Con *con) {
+@@ -748,9 +770,7 @@ void x_draw_decoration(Con *con) {
              icon_size);
      }
  
@@ -649,5 +649,5 @@ index 42df996..2066b6e 100644
 -    }
 +    I3STRING_FREE(title);
  
-     x_draw_decoration_after_title(con, p);
+     x_draw_decoration_after_title(con, p, dest_surface);
  copy_pixmaps:
