@@ -1,3 +1,10 @@
+i3-wm (4.23-1) unstable; urgency=medium
+
+  [ Minimalist ]
+  * Update to upstream version 4.23
+
+ -- Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>  Wed, 15 May 2024 15:04:06 +0200
+
 i3-wm (4.22-1) unstable; urgency=medium
 
   [ (anadahz) ]
