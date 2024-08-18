@@ -1,3 +1,13 @@
+i3-wm (4.23-2) unstable; urgency=medium
+
+  [ Demi Marie Obenour ]
+  * Allow users to specify larger borders
+
+  [ Marek Marczykowski-Górecki ]
+  * ci: add R4.3
+
+ -- Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>  Sun, 18 Aug 2024 17:17:33 +0200
+
 i3-wm (4.23-1) unstable; urgency=medium
 
   [ Minimalist ]
