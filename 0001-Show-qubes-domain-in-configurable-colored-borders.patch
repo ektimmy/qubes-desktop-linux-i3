@@ -25,7 +25,7 @@ index 19d2f71..55fa2b6 100644
          struct Colortriple focused;
          struct Colortriple unfocused;
 diff --git a/include/data.h b/include/data.h
-index 483aeca..e572dcb 100644
+index 483aeca..de037b9 100644
 --- a/include/data.h
 +++ b/include/data.h
 @@ -176,6 +176,24 @@ typedef enum {
@@ -66,6 +66,14 @@ index 483aeca..e572dcb 100644
      /** The WM_WINDOW_ROLE of this window (for example, the pidgin buddy window
       * sets "buddy list"). Useful to match specific windows in assignments or
       * for_window. */
+@@ -542,6 +566,7 @@ struct Match {
+     struct regex *window_role;
+     struct regex *workspace;
+     struct regex *machine;
++    struct regex *vmname;
+     xcb_atom_t window_type;
+     enum {
+         U_DONTCHECK = -1,
 diff --git a/include/i3-atoms_rest.xmacro.h b/include/i3-atoms_rest.xmacro.h
 index fa915fd..cd6f801 100644
 --- a/include/i3-atoms_rest.xmacro.h
