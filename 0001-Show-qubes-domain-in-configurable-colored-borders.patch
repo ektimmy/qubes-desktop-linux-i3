@@ -112,7 +112,7 @@ index 7b43ab1..39be137 100644
   * Updates the CLIENT_LEADER (logical parent window).
   *
 diff --git a/parser-specs/config.spec b/parser-specs/config.spec
-index 33708b5..980b68e 100644
+index 33708b5..ce8c7b2 100644
 --- a/parser-specs/config.spec
 +++ b/parser-specs/config.spec
 @@ -61,7 +61,7 @@ state INITIAL:
@@ -124,7 +124,15 @@ index 33708b5..980b68e 100644
  
  # We ignore comments and 'set' lines (variables).
  state IGNORE_LINE:
-@@ -387,6 +387,10 @@ state COLOR_SINGLE:
+@@ -234,6 +234,7 @@ state CRITERIA:
+   ctype = 'urgent'        -> CRITERION
+   ctype = 'workspace'     -> CRITERION
+   ctype = 'machine'     -> CRITERION
++  ctype = 'vmname'        -> CRITERION
+   ctype = 'floating_from' -> CRITERION_FROM
+   ctype = 'tiling_from'   -> CRITERION_FROM
+   ctype = 'tiling', 'floating', 'all'
+@@ -387,6 +388,10 @@ state COLOR_SINGLE:
        -> call cfg_color_single($colorclass, $color)
  
  # colorclass border background text indicator
@@ -135,7 +143,7 @@ index 33708b5..980b68e 100644
  state COLOR_BORDER:
    border = word
        -> COLOR_BACKGROUND
-@@ -403,13 +407,13 @@ state COLOR_INDICATOR:
+@@ -403,13 +408,13 @@ state COLOR_INDICATOR:
    indicator = word
        -> COLOR_CHILD_BORDER
    end
